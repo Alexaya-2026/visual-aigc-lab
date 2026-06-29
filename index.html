@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>全球 AI 模型发布时间轴（2019–2025）</title>
+<style>
+  :root{
+    --border-strong:#d8d6d2;
+    --border-stronger:#bdbab5;
+    --border:#e7e5e1;
+    --border-accent:#cfd8ee;
+    --text-primary:#1f1e1c;
+    --text-secondary:#5a5854;
+    --text-muted:#9a9792;
+    --text-accent:#2f4a8a;
+    --surface-1:#f4f3f1;
+    --surface-2:#fbfaf9;
+    --bg-accent:#f2f5fb;
+    --bg-page:#ffffff;
+  }
+  html,body{
+    background:var(--bg-page);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;
+    color:var(--text-primary);
+  }
+  body{max-width:920px;margin:0 auto;padding:24px 20px 60px;}
+  .sr-only{
+    position:absolute;width:1px;height:1px;padding:0;margin:-1px;
+    overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;
+  }
+  h1.page-title{font-size:20px;font-weight:600;margin-bottom:4px;}
+  .page-sub{font-size:13px;color:var(--text-muted);margin-bottom:8px;}
+</style>
+</head>
+<body>
+<h1 class="page-title">全球 AI 模型发布时间轴</h1>
+<div class="page-sub">2019–2025 · 涵盖 LLM、推理模型、生图、生视频、多模态，可按类别和地区筛选</div>
+<h2 class="sr-only">全球 AI 模型发布时间轴（2019–2025），涵盖 LLM、生图、生视频、多模态，可按类别和地区筛选</h2>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+.ctrl-row{display:flex;flex-wrap:wrap;gap:6px;padding:14px 0 8px}
+.pill{display:inline-flex;align-items:center;gap:5px;padding:5px 11px;border-radius:20px;border:0.5px solid var(--border-strong);font-size:12px;cursor:pointer;color:var(--text-secondary);background:transparent;transition:all .15s}
+.pill.active{color:#fff;border-color:transparent}
+.pill[data-f="all"].active{background:var(--text-primary)}
+.pill[data-f="llm"].active{background:#2a78d6}
+.pill[data-f="reasoning"].active{background:#185fa5}
+.pill[data-f="image"].active{background:#1baf7a}
+.pill[data-f="video"].active{background:#eda100}
+.pill[data-f="multi"].active{background:#4a3aa7}
+.pill[data-f="cn"].active{background:#e34948}
+.pill[data-f="global"].active{background:#5f5e5a}
+.dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.sep{width:0.5px;height:20px;background:var(--border-strong);margin:0 2px}
+.tl{position:relative;padding:4px 0 20px}
+.yr-row{display:flex;align-items:flex-start;margin-bottom:2px}
+.yr-lbl{width:40px;font-size:11px;font-weight:500;color:var(--text-muted);padding-top:11px;flex-shrink:0}
+.yr-track{flex:1;position:relative}
+.hline{position:absolute;top:19px;left:0;right:0;height:0.5px;background:var(--border)}
+.ev-row{display:flex;flex-wrap:wrap;gap:5px;position:relative;padding-bottom:4px}
+.card{border:0.5px solid var(--border);border-radius:8px;padding:6px 9px;font-size:12px;cursor:pointer;transition:border-color .15s,transform .15s;background:var(--surface-2);min-width:110px;max-width:210px}
+.card:hover{border-color:var(--border-stronger);transform:translateY(-1px)}
+.card.hidden{display:none}
+.card-top{display:flex;align-items:center;gap:4px;margin-bottom:2px;flex-wrap:wrap}
+.card-co{font-size:11px;color:var(--text-secondary);font-weight:500}
+.card-name{font-size:12px;color:var(--text-primary);font-weight:500;line-height:1.3}
+.card-date{font-size:11px;color:var(--text-muted);margin-top:1px}
+.panel{border:0.5px solid var(--border-accent);border-radius:10px;padding:13px 15px;margin:6px 0 10px;background:var(--bg-accent);display:none}
+.panel.open{display:block}
+.panel-title{font-size:14px;font-weight:500;color:var(--text-accent);margin-bottom:4px}
+.panel-body{font-size:13px;color:var(--text-secondary);line-height:1.6}
+.panel-close{float:right;cursor:pointer;color:var(--text-muted);font-size:15px;line-height:1;margin-left:8px}
+.stats{display:flex;gap:10px;flex-wrap:wrap;padding:6px 0 10px;font-size:12px;color:var(--text-muted)}
+.stat{background:var(--surface-1);border-radius:6px;padding:4px 10px}
+.stat b{color:var(--text-primary)}
+.badge-cn{font-size:10px;background:#fcebeb;color:#a32d2d;border-radius:3px;padding:1px 4px;margin-left:2px}
+.badge-r{font-size:10px;background:#e6f1fb;color:#0c447c;border-radius:3px;padding:1px 4px;margin-left:2px}
+</style>
+
+<div class="ctrl-row">
+  <button class="pill active" data-f="all" onclick="filt('all')"><span class="dot" style="background:var(--text-primary)"></span>全部</button>
+  <div class="sep"></div>
+  <button class="pill" data-f="llm" onclick="filt('llm')"><span class="dot" style="background:#2a78d6"></span>LLM</button>
+  <button class="pill" data-f="reasoning" onclick="filt('reasoning')"><span class="dot" style="background:#185fa5"></span>推理模型</button>
+  <button class="pill" data-f="image" onclick="filt('image')"><span class="dot" style="background:#1baf7a"></span>生图</button>
+  <button class="pill" data-f="video" onclick="filt('video')"><span class="dot" style="background:#eda100"></span>生视频</button>
+  <button class="pill" data-f="multi" onclick="filt('multi')"><span class="dot" style="background:#4a3aa7"></span>多模态</button>
+  <div class="sep"></div>
+  <button class="pill" data-f="cn" onclick="filt('cn')"><span class="dot" style="background:#e34948"></span>中国团队</button>
+  <button class="pill" data-f="global" onclick="filt('global')"><span class="dot" style="background:#5f5e5a"></span>海外团队</button>
+</div>
+
+<div id="stats" class="stats"></div>
+<div id="panel" class="panel"><span class="panel-close" onclick="closeP()">✕</span><div class="panel-title" id="pt"></div><div class="panel-body" id="pb"></div></div>
+<div class="tl" id="tl"></div>
+
+<script>
+const CC={llm:'#2a78d6',reasoning:'#185fa5',image:'#1baf7a',video:'#eda100',multi:'#4a3aa7'};
+
+const data=[
+  {y:2019,m:'2019.07',co:'百度',name:'ERNIE 2.0',cat:'llm',region:'cn',note:'百度知识增强预训练模型第二代，专注中文理解与多任务学习，在 GLUE 等基准超越 BERT。'},
+
+  {y:2020,m:'2020.06',co:'OpenAI',name:'GPT-3',cat:'llm',region:'global',note:'1750 亿参数，开启大模型商业化元年，确立 Transformer 预训练+少样本学习范式。API 公测约 2020.06。'},
+  {y:2020,m:'2020.07',co:'百度',name:'ERNIE 3.0',cat:'llm',region:'cn',note:'百度文心第三代，知识增强+预训练规模进一步扩大，奠定文心系列商业化基础。'},
+
+  {y:2021,m:'2021.01',co:'OpenAI',name:'DALL·E 1',cat:'image',region:'global',note:'首个大规模文生图模型，论文 2021.01.05 公开，基于 GPT-3 架构处理图文 token，证明语言模型可以"画画"。'},
+  {y:2021,m:'2021.01',co:'Google',name:'Switch Transformer',cat:'llm',region:'global',note:'MoE 架构达到 1.6 万亿参数，为后来稀疏大模型奠基。'},
+  {y:2021,m:'2021.02',co:'OpenAI',name:'CLIP',cat:'multi',region:'global',note:'图文对比学习，arXiv 2021.02 公开。奠定视觉-语言对齐基础，后续几乎所有生图模型都用到它。'},
+  {y:2021,m:'2021.08',co:'OpenAI',name:'Codex',cat:'llm',region:'global',note:'GitHub Copilot 底层模型，代码生成时代的开端，GPT-3 在代码上的专项微调版本。'},
+  {y:2021,m:'2021.04',co:'华为',name:'盘古 α',cat:'llm',region:'cn',note:'华为+鹏城实验室，2000 亿参数中文大模型，首批国产超大模型之一。'},
+  {y:2021,m:'2021.06',co:'智源研究院',name:'悟道 2.0',cat:'llm',region:'cn',note:'1.75 万亿参数，北京智源 AI 研究院，当时全球最大模型之一。'},
+
+  {y:2022,m:'2022.03',co:'OpenAI',name:'InstructGPT',cat:'llm',region:'global',note:'RLHF 对齐方法的奠基模型，ChatGPT 的直接前身，首次系统展示"让模型听话"的可行路径。'},
+  {y:2022,m:'2022.04',co:'Google',name:'PaLM',cat:'llm',region:'global',note:'5400 亿参数，Pathways 架构，Google 在 LLM 军备竞赛中的重要布局。'},
+  {y:2022,m:'2022.04',co:'OpenAI',name:'DALL·E 2',cat:'image',region:'global',note:'CLIP + 扩散模型结合，生成质量飞跃，文图语义对齐大幅提升。'},
+  {y:2022,m:'2022.05',co:'Google',name:'Imagen',cat:'image',region:'global',note:'级联扩散模型 + T5 文本编码器，论文 2022.05 公开，展示 LLM 文本理解对生图的价值。'},
+  {y:2022,m:'2022.07',co:'BigScience',name:'BLOOM',cat:'llm',region:'global',note:'1760 亿参数开源多语言大模型，多国研究者协作，开源社区的重要里程碑。'},
+  {y:2022,m:'2022.08',co:'Stability AI',name:'Stable Diffusion 1.x',cat:'image',region:'global',note:'开源发布，引爆社区生态，Civitai、ControlNet 等由此爆发。LDM 潜在扩散模型架构。'},
+  {y:2022,m:'2022.09',co:'Midjourney',name:'Midjourney V3',cat:'image',region:'global',note:'艺术风格突出，Discord 社区运营模式独特，成为创作者首选工具。'},
+  {y:2022,m:'2022.11',co:'Stability AI',name:'Stable Diffusion 2.0',cat:'image',region:'global',note:'升级文本编码器为 OpenCLIP，分辨率提升，但社区因风格变化反应不一。'},
+  {y:2022,m:'2022.11',co:'OpenAI',name:'ChatGPT（GPT-3.5）',cat:'llm',region:'global',note:'加入 RLHF 对齐训练，首个大众化对话 AI，2 个月破亿用户，彻底引爆 AI 热潮。'},
+  {y:2022,m:'2022.11',co:'百度',name:'文心 ERNIE 3.5',cat:'llm',region:'cn',note:'百度文心系列成熟版，中文对话能力显著提升，国内最早商业化 LLM 之一。'},
+  {y:2022,m:'2022.12',co:'Stability AI',name:'Stable Diffusion 2.1',cat:'image',region:'global',note:'修复 SD 2.0 的部分问题，NSFW 过滤调整，社区接受度回升。'},
+  {y:2022,m:'2022.12',co:'Meta',name:'Make-A-Video',cat:'video',region:'global',note:'Meta 首个文生视频，基于图像扩散模型扩展时序维度。'},
+
+  {y:2023,m:'2023.02',co:'Meta',name:'LLaMA 1',cat:'llm',region:'global',note:'开源 LLM（7B–65B），掀起开源模型热潮，Alpaca、Vicuna 大量衍生。'},
+  {y:2023,m:'2023.02',co:'Runway',name:'Gen-1',cat:'video',region:'global',note:'Runway 首个视频生成模型，基于扩散模型，文生视频早期重要节点。'},
+  {y:2023,m:'2023.03',co:'Anthropic',name:'Claude 1',cat:'llm',region:'global',note:'主打安全对齐，引入 Constitutional AI 训练方法，与 OpenAI 形成竞争。'},
+  {y:2023,m:'2023.03',co:'OpenAI',name:'GPT-4',cat:'multi',region:'global',note:'首个强多模态大模型（文本+图像输入），推理能力大幅超越 GPT-3.5，全行业震动。'},
+  {y:2023,m:'2023.03',co:'Midjourney',name:'Midjourney V5',cat:'image',region:'global',note:'文生图质量飞跃节点，真实感与细节大幅提升，"AI 生图"首次被大众广泛认知。'},
+  {y:2023,m:'2023.03',co:'百度',name:'文心一言',cat:'llm',region:'cn',note:'百度首个对标 ChatGPT 的对话产品，国内最早发布的 AIGC 对话平台之一。'},
+  {y:2023,m:'2023.04',co:'阿里',name:'通义千问 1.0',cat:'llm',region:'cn',note:'阿里达摩院发布，支持中英文，后续开源版本成为国内最活跃开源 LLM 之一。'},
+  {y:2023,m:'2023.05',co:'Google',name:'PaLM 2',cat:'llm',region:'global',note:'Google I/O 发布，对抗 GPT-4 的关键布局，多语言与推理能力大幅改进。'},
+  {y:2023,m:'2023.05',co:'讯飞',name:'星火大模型 1.0',cat:'llm',region:'cn',note:'科大讯飞发布，聚焦教育、医疗等行业垂直场景。'},
+  {y:2023,m:'2023.06',co:'ChatGLM',name:'ChatGLM2',cat:'llm',region:'cn',note:'清华系智谱 AI，ChatGLM 第二代，中英双语，开源版本社区活跃。'},
+  {y:2023,m:'2023.06',co:'百川智能',name:'Baichuan 1',cat:'llm',region:'cn',note:'国内"六小虎"成员，王小川创办，开源 7B/13B，中文理解突出。'},
+  {y:2023,m:'2023.06',co:'商汤',name:'日日新 SenseNova',cat:'multi',region:'cn',note:'商汤科技多模态大模型体系，覆盖文本、图像、视频生成。'},
+  {y:2023,m:'2023.06',co:'腾讯',name:'混元大模型',cat:'llm',region:'cn',note:'腾讯首个自研大模型，集成进微信、腾讯文档等产品。'},
+  {y:2023,m:'2023.07',co:'Meta',name:'LLaMA 2',cat:'llm',region:'global',note:'开放商用授权，70B 版本逼近 GPT-3.5，与微软合作推广，开源生态更成熟。'},
+  {y:2023,m:'2023.07',co:'Runway',name:'Gen-2',cat:'video',region:'global',note:'文生视频+图生视频双模式，生成质量首次达到可演示级别，Runway 由此出圈。'},
+  {y:2023,m:'2023.07',co:'华为',name:'盘古 3.0',cat:'llm',region:'cn',note:'华为盘古大模型第三代，主打行业大模型（矿山、气象、医疗等），L0/L1/L2 三层架构。'},
+  {y:2023,m:'2023.08',co:'字节跳动',name:'豆包（云雀）',cat:'llm',region:'cn',note:'字节自研 LLM，后以"豆包"品牌面向 C 端，月活增长极快。'},
+  {y:2023,m:'2023.09',co:'OpenAI',name:'GPT-4V',cat:'multi',region:'global',note:'GPT-4 开放视觉能力，用户可直接上传图片提问，多模态交互进入主流。'},
+  {y:2023,m:'2023.09',co:'Stability AI',name:'SDXL',cat:'image',region:'global',note:'双 UNet 架构，原生 1024px 输出，开源生图新基准。'},
+  {y:2023,m:'2023.10',co:'OpenAI',name:'DALL·E 3',cat:'image',region:'global',note:'OpenAI 第三代生图，集成进 ChatGPT，提示词跟随性大幅提升，中文提示直接可用。'},
+  {y:2023,m:'2023.10',co:'月之暗面',name:'Kimi',cat:'llm',region:'cn',note:'国内首个支持 20 万字长文本的 AI 助手，C 端破圈，长文阅读场景代表产品。'},
+  {y:2023,m:'2023.11',co:'OpenAI',name:'GPT-4 Turbo',cat:'llm',region:'global',note:'128K 上下文、知识更新到 2023.04，价格降低 3×，成为开发者主力 API 模型。'},
+  {y:2023,m:'2023.11',co:'xAI',name:'Grok 1',cat:'llm',region:'global',note:'马斯克旗下 xAI 首个模型，接入实时 X（Twitter）数据，标志马斯克正式入局 AI。'},
+  {y:2023,m:'2023.11',co:'Anthropic',name:'Claude 2.1',cat:'llm',region:'global',note:'支持 200K context window，长文档处理能力突破。'},
+  {y:2023,m:'2023.11',co:'零一万物',name:'Yi 系列',cat:'llm',region:'cn',note:'李开复创办，国内"六小虎"成员，开源 6B/34B，英文基础能力尤其突出。'},
+  {y:2023,m:'2023.12',co:'Google',name:'Gemini 1.0',cat:'multi',region:'global',note:'原生多模态设计，Ultra/Pro/Nano 三档覆盖云端到端侧。'},
+  {y:2023,m:'2023.12',co:'Midjourney',name:'Midjourney V6',cat:'image',region:'global',note:'首个支持文字渲染的 Midjourney 版本，写实感与构图能力大幅提升。'},
+  {y:2023,m:'2023.12',co:'Google',name:'Imagen 2',cat:'image',region:'global',note:'Google 第二代生图模型，引入 Cascade Diffusion，文字渲染与人物质量提升。'},
+  {y:2023,m:'2023.12',co:'Pika',name:'Pika 1.0',cat:'video',region:'global',note:'与 Runway Gen-2 同期甚至更出圈的文生视频工具，操作简单，Discord 社区爆发。'},
+  {y:2023,m:'2023.12',co:'百度',name:'文心 ERNIE-Image',cat:'image',region:'cn',note:'百度文生图模型，与文心一言生态打通，支持中文提示词直出。'},
+
+  {y:2024,m:'2024.01',co:'智谱 AI',name:'GLM-4',cat:'llm',region:'cn',note:'智谱 AI 旗舰版本，对标 GPT-4，支持函数调用、128K 上下文，中英文均衡。'},
+  {y:2024,m:'2024.01',co:'字节跳动',name:'即梦（Seedream 早期）',cat:'image',region:'cn',note:'字节跳动文生图产品，后升级为 Seedream 4.5/5.0，风格多样。'},
+  {y:2024,m:'2024.02',co:'Google',name:'Gemini 1.5 Pro',cat:'multi',region:'global',note:'100 万 token 超长上下文，MoE 架构，多模态理解再升级。'},
+  {y:2024,m:'2024.02',co:'OpenAI',name:'Sora（发布）',cat:'video',region:'global',note:'首个展示 60 秒高质量视频的模型，基于 DiT 架构，引发行业震动，未立即开放。'},
+  {y:2024,m:'2024.03',co:'Anthropic',name:'Claude 3（Opus/Sonnet/Haiku）',cat:'llm',region:'global',note:'Claude 3 三档同时发布，Opus 登顶多项基准超越 GPT-4，Haiku 为史上最快轻量模型。'},
+  {y:2024,m:'2024.03',co:'Stability AI',name:'Stable Diffusion 3',cat:'image',region:'global',note:'引入 DiT（MM-DiT）架构，文本渲染能力大幅改善，与 LLM 架构趋同。'},
+  {y:2024,m:'2024.03',co:'腾讯',name:'混元DiT v1.1',cat:'image',region:'cn',note:'腾讯首个基于 DiT 架构的文生图模型，后续持续迭代至 v1.2、v2.1。'},
+  {y:2024,m:'2024.04',co:'Meta',name:'LLaMA 3',cat:'llm',region:'global',note:'8B/70B 开源，指令跟随能力大幅提升，接近闭源模型水平。'},
+  {y:2024,m:'2024.05',co:'OpenAI',name:'GPT-4o',cat:'multi',region:'global',note:'原生全模态（文/图/语音），延迟大幅降低，o="omni"，是目前使用最广泛的 OpenAI 模型。'},
+  {y:2024,m:'2024.05',co:'DeepSeek',name:'DeepSeek V2',cat:'llm',region:'cn',note:'MLA（多头潜在注意力）架构创新，671B MoE 仅激活 21B，引发国内大模型"价格战"。'},
+  {y:2024,m:'2024.05',co:'阿里',name:'Qwen2',cat:'llm',region:'cn',note:'通义千问第二代主力版本，多语言能力大幅提升，开源版本成为 Hugging Face 热门。'},
+  {y:2024,m:'2024.05',co:'阿里',name:'通义万相 / Qwen-Image',cat:'image',region:'cn',note:'阿里生图模型，Qwen-Image 支持图文理解，Qwen-Edit 支持指令图像编辑。'},
+  {y:2024,m:'2024.06',co:'Black Forest Labs',name:'Flux.1',cat:'image',region:'global',note:'SD 原班人马创业，基于 DiT，国内平台"基础算法 F.1/F.2"系列即其各版本（Dev/Pro/Schnell）。'},
+  {y:2024,m:'2024.06',co:'快手',name:'Kling（可灵）1.0',cat:'video',region:'cn',note:'国内首批高质量文生视频，5秒/10秒，快手自研，迅速出海，与 Runway 正面竞争。'},
+  {y:2024,m:'2024.06',co:'快手',name:'Kolors（可图）开源',cat:'image',region:'cn',note:'快手开源文生图模型，Hugging Face 社区下载量极高，中文场景表现突出。'},
+  {y:2024,m:'2024.06',co:'Anthropic',name:'Claude 3.5 Sonnet',cat:'llm',region:'global',note:'2024.06.20 发布，推理与编码超越 GPT-4o，Claude 系列首次在多项基准登顶。'},
+  {y:2024,m:'2024.07',co:'Meta',name:'LLaMA 3.1',cat:'llm',region:'global',note:'405B 版本是开源模型史上分水岭，首次在多项基准超越闭源模型，开源 LLM 里程碑。'},
+  {y:2024,m:'2024.07',co:'OpenAI',name:'GPT-4o mini',cat:'llm',region:'global',note:'取代 GPT-3.5 Turbo 的轻量模型，性价比极高，成为开发者高频调用的默认选择。'},
+  {y:2024,m:'2024.07',co:'智谱 AI',name:'Z-Image / CogView3',cat:'image',region:'cn',note:'智谱 AI 文生图系列，Z-Image 与 Z-Image-Base 分别针对商用和基础场景。'},
+  {y:2024,m:'2024.08',co:'Google',name:'Imagen 3',cat:'image',region:'global',note:'Google 第三代生图模型，细节与真实感进一步提升，集成进 Gemini 产品线。'},
+  {y:2024,m:'2024.08',co:'Google',name:'Veo 1',cat:'video',region:'global',note:'Google DeepMind 生视频模型，与 Imagen 3 搭档，支持 1080p 输出。'},
+  {y:2024,m:'2024.08',co:'Lightricks',name:'LTX Video（LTX 2.x）',cat:'video',region:'global',note:'以色列 Lightricks 出品，LTX 2.3 为其迭代版本，开源可本地运行，速度快。'},
+  {y:2024,m:'2024.09',co:'字节跳动',name:'Seedream 4.5',cat:'image',region:'cn',note:'即梦升级版，写实与艺术风格均衡，支持中英文提示词，国内主流生图平台标配。'},
+  {y:2024,m:'2024.10',co:'Midjourney',name:'Midjourney V7',cat:'image',region:'global',note:'Midjourney 最新主力版本，人物一致性与真实感大幅提升，支持个性化风格记忆。'},
+  {y:2024,m:'2024.10',co:'Meta',name:'Movie Gen',cat:'video',region:'global',note:'Meta 研究级文生视频，30fps 1080p，展示时序音频同步生成能力。'},
+  {y:2024,m:'2024.10',co:'Stability AI',name:'Stable Diffusion 3.5',cat:'image',region:'global',note:'开源社区热度极高，SD 3.5 Large/Medium 两版本，修复 SD 3 的部分问题，可本地部署。'},
+  {y:2024,m:'2024.10',co:'MiniMax',name:'HiDream（海螺）',cat:'image',region:'cn',note:'MiniMax 旗下文生图模型，后开源，在国内 AI 作图平台广泛上架。'},
+  {y:2024,m:'2024.11',co:'Runway',name:'Gen-3 Alpha',cat:'video',region:'global',note:'Runway 新一代架构，时序一致性显著提升，支持精细镜头控制。'},
+  {y:2024,m:'2024.11',co:'腾讯',name:'混元DiT v1.2 / v2.1',cat:'image',region:'cn',note:'腾讯持续迭代 DiT 生图，v2.1 在写实场景和中文理解上大幅提升。'},
+  {y:2024,m:'2024.12',co:'阿里',name:'Qwen2.5',cat:'llm',region:'cn',note:'通义千问 2.5 代，推理与代码能力提升，Qwen2.5-Coder 成为开源代码模型新基准。'},
+  {y:2024,m:'2024.12',co:'DeepSeek',name:'DeepSeek V3',cat:'llm',region:'cn',note:'6710 亿参数 MoE，训练成本仅 557 万美元，性能对标 GPT-4，是 R1 的基础底座。'},
+  {y:2024,m:'2024.12',co:'Google',name:'Gemini 2.0',cat:'multi',region:'global',note:'支持原生图像输出+实时流式多模态，进入 agentic AI 阶段。'},
+  {y:2024,m:'2024.12',co:'百度',name:'ERNIE 4.5',cat:'llm',region:'cn',note:'百度文心最新主力版本，多模态理解增强，接入文心一言全系产品。'},
+
+  {y:2025,m:'2025.01',co:'OpenAI',name:'o3 / o3-mini',cat:'reasoning',region:'global',note:'o3 在 ARC-AGI 等超高难度基准创新高，o3-mini 于 2025.01.31 发布，推理模型系列重要里程碑。'},
+  {y:2025,m:'2025.01',co:'DeepSeek',name:'DeepSeek R1',cat:'reasoning',region:'cn',note:'推理能力逼近 o3，训练成本约为其 1/30，开源发布，震撼全球 AI 圈，引发资本市场震动。'},
+  {y:2025,m:'2025.01',co:'OpenAI',name:'Sora（开放）',cat:'video',region:'global',note:'面向 ChatGPT Plus/Pro 正式开放，最长 20 秒，多种分辨率。'},
+  {y:2025,m:'2025.02',co:'阿里',name:'Wan 2.1（万象）',cat:'video',region:'cn',note:'阿里开源文生视频，14B 参数，质量与商业模型相当，开源社区重要里程碑。'},
+  {y:2025,m:'2025.02',co:'Anthropic',name:'Claude 3.7 Sonnet',cat:'reasoning',region:'global',note:'扩展思维模式（extended thinking），混合推理+对话，编程/分析能力再登顶。'},
+  {y:2025,m:'2025.02',co:'OpenAI',name:'GPT-4.5',cat:'llm',region:'global',note:'OpenAI 定位为"知识最丰富、情商最高"的模型，强化世界知识与对话自然度。'},
+  {y:2025,m:'2025.03',co:'Google',name:'Gemini 2.5 Pro',cat:'reasoning',region:'global',note:'Google 当前主力推理模型，编程与数学能力大幅提升，多项基准登顶。'},
+  {y:2025,m:'2025.03',co:'字节跳动',name:'Seedream 5.0',cat:'image',region:'cn',note:'即梦最新旗舰生图，写实、动漫、概念艺术全场景，提示词跟随性大幅提升。'},
+  {y:2025,m:'2025.03',co:'Google',name:'Veo 2',cat:'video',region:'global',note:'物理规律理解提升，支持更长视频，集成进 Google Workspace。'},
+  {y:2025,m:'2025.04',co:'OpenAI',name:'GPT-4.1',cat:'llm',region:'global',note:'2025.04.14 发布，强化代码与长上下文能力，128K context，开发者 API 主力模型。'},
+  {y:2025,m:'2025.04',co:'Meta',name:'LLaMA 4',cat:'multi',region:'global',note:'原生多模态，Scout/Maverick/Behemoth 三档，MoE 架构，最大参数达 2T。'},
+  {y:2025,m:'2025.04',co:'阿里',name:'Qwen3',cat:'reasoning',region:'cn',note:'通义千问新一代混合推理模型，支持"思考模式"与"非思考模式"切换，全尺寸开源。'},
+  {y:2025,m:'2025.04',co:'快手',name:'Kling 1.6',cat:'video',region:'cn',note:'可灵持续迭代，1.6 版本运动流畅性与物理合理性大幅提升，支持参考图生视频。'},
+  {y:2025,m:'2025.05',co:'MiniMax',name:'HiDream 开源版',cat:'image',region:'cn',note:'MiniMax 将 HiDream 开源，在 Hugging Face 引发关注，可本地部署。'},
+  {y:2025,m:'2025.06',co:'Anthropic',name:'Claude 4（Opus/Sonnet）',cat:'llm',region:'global',note:'当前最新系列，Opus 4 主打超强推理，Sonnet 4 兼顾速度与性价比，支持 hybrid reasoning。'},
+  {y:2025,m:'2025.06',co:'腾讯',name:'混元视频 2.0',cat:'video',region:'cn',note:'腾讯生视频最新版，支持长视频生成，与混元图像生态打通。'},
+];
+
+const years=[2019,2020,2021,2022,2023,2024,2025];
+let cur='all', sel=null;
+
+function getColor(ev){return CC[ev.cat]||'#888'}
+function visible(ev){
+  if(cur==='all') return true;
+  if(cur==='cn') return ev.region==='cn';
+  if(cur==='global') return ev.region==='global';
+  return ev.cat===cur;
+}
+
+function render(){
+  const tl=document.getElementById('tl');
+  tl.innerHTML='';
+  let shown=0;
+  years.forEach(y=>{
+    const evs=data.filter(e=>e.y===y);
+    if(!evs.length) return;
+    const visEvs=evs.filter(e=>visible(e));
+    if(!visEvs.length) return;
+    shown+=visEvs.length;
+    const row=document.createElement('div');
+    row.className='yr-row';
+    row.innerHTML=`<div class="yr-lbl">${y}</div>`;
+    const track=document.createElement('div');
+    track.className='yr-track';
+    track.innerHTML='<div class="hline"></div>';
+    const er=document.createElement('div');
+    er.className='ev-row';
+    evs.forEach(ev=>{
+      const hide=!visible(ev);
+      const c=document.createElement('div');
+      c.className='card'+(hide?' hidden':'');
+      c.dataset.idx=data.indexOf(ev);
+      const col=getColor(ev);
+      const cnBadge=ev.region==='cn'?`<span class="badge-cn">CN</span>`:'';
+      const rBadge=ev.cat==='reasoning'?`<span class="badge-r">推理</span>`:'';
+      c.innerHTML=`<div class="card-top"><span class="dot" style="background:${col}"></span><span class="card-co">${ev.co}</span>${cnBadge}${rBadge}</div><div class="card-name">${ev.name}</div><div class="card-date">${ev.m}</div>`;
+      c.onclick=()=>openP(data.indexOf(ev));
+      er.appendChild(c);
+    });
+    track.appendChild(er);
+    row.appendChild(track);
+    tl.appendChild(row);
+  });
+  const cnC=data.filter(e=>visible(e)&&e.region==='cn').length;
+  const glC=data.filter(e=>visible(e)&&e.region==='global').length;
+  document.getElementById('stats').innerHTML=`<span class="stat">共 <b>${shown}</b> 个模型</span><span class="stat">中国团队 <b>${cnC}</b></span><span class="stat">海外团队 <b>${glC}</b></span>`;
+}
+
+function filt(f){
+  cur=f;
+  document.querySelectorAll('.pill').forEach(p=>p.classList.toggle('active',p.dataset.f===f));
+  closeP();
+  render();
+}
+function openP(idx){
+  const ev=data[idx];
+  if(sel===idx){closeP();return;}
+  sel=idx;
+  document.getElementById('pt').textContent=`${ev.co} · ${ev.name}（${ev.m}）`;
+  document.getElementById('pb').textContent=ev.note;
+  const p=document.getElementById('panel');
+  p.className='panel open';
+  p.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+function closeP(){sel=null;document.getElementById('panel').className='panel';}
+render();
+</script>
+</body></html>
