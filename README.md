@@ -3,7 +3,7 @@
 > 我的视觉生成学习主场。这里不堆"咒语",练的是**机制、控制力和判断力**。
 > 目标:长成一个"用工程能力当创作武器"的技术型视觉创作者。
 >
-> **V2 / V2.1** —— V2 只动这份架构文档本身,不动 `comfyui-mastery-roadmap.md` 和六篇 stage 详解;V2.1 在此基础上补齐了审美阶梯和副业两条并行轨道的执行计划(`aesthetics-ladder-roadmap.md`、`side-track-roadmap.md`)。改了什么、为什么改,见 `00-notes/v2-changelog.md`。
+> **V2 / V2.1** —— V2 只动这份架构文档本身,不动 `comfyui-mastery-roadmap.md` 和六篇 stage 详解;V2.1 补齐了审美阶梯和副业两条并行轨道的执行计划(`aesthetics-ladder-roadmap.md`、`side-track-roadmap.md`),并追加了两处小补丁:给 swipe file 一个具体文件路径,给 Flux Kontext 的排期一个显式默认值(而非隐性缺口)。改了什么、为什么改,见 `00-notes/v2-changelog.md`。
 
 ---
 
@@ -34,6 +34,8 @@
 - **生产模式**:快、用已会的、不复盘。其余的活走这里。
 
 **reading-debt(下钻欠债本)**:撞到"我不懂光/不懂构图/不懂模型为什么这样"的缺口 → 记进 `00-notes/reading-debt.md` → 攒够了去翻对应资源 → 读完回填一句大白话。
+
+**swipe file(对比留痕本,V2.1 补上路径)**:roadmap 方法论里反复提到"存一份 swipe file,两周后就是你自己的私房参考手册",但之前一直没给它一个具体文件名——存进 `00-notes/swipe-file.md`,每条记录格式:日期 + 提示词 + 工具&版本 + steps/cfg/seed + 前后图路径。这份和 reading-debt 是两本不同的账:reading-debt 记"我不懂什么",swipe file 记"这个设置产出了这个结果",别混在一起写。
 
 **记账触发点,两种都算,别只记第一种**:
 1. 日常操作里撞到的"我不懂为什么"的瞬间(原有的)
@@ -87,6 +89,7 @@
 
 - **技术阶梯④ 视频与动态**:触发条件 = 技术阶梯③正式毕业。到时候视觉 AIGC 全景图里的「四把尺子」和「当下主力 vs 上一代」两张表,就是你重新盘点视频生态该学哪个模型的起点——不用现在就去看。
 - **四阶段产出 #2「自训 LoRA」**:注意,现有 roadmap 里 Stage 2 提到的 Lightning LoRA 是**用现成的**,不是**训练自己的**。真正的 LoRA 训练目前完全没有执行文档覆盖,这是合理的,因为它属于技术阶梯③的深水区,排在图像编辑打熟之后。触发条件同上:③毕业后,单开一份 LoRA 训练专项文档(不塞进现有 roadmap,避免把它撑得太杂)。
+- **Flux Kontext(V2.1 新增声明)**:README 和全景图都把 Qwen-Image-Edit / Flux Kontext 并列为编辑层"真功夫"的两个选项,但 roadmap + 六篇 stage 详解目前从头到尾只覆盖 Qwen,Flux Kontext 一次没出现过——这条之前是隐性缺口,不是明说的排期。V2.1 给它一个默认值,不是替你做决定:**默认先把 Qwen-Image-Edit 单线走完到技术阶梯③毕业,再评估要不要/何时把 Flux Kontext 当第二个编辑模型引入**,理由是同时学两个编辑模型容易让"这次结果差是提示词问题还是模型选错了"的对比失真,违反单变量纪律。如果你其实想两个并行练,这条默认值需要你明确改掉,而不是让它继续隐性存在。
 
 ### (b) 并行轨道 —— V2.1 已补上执行计划
 
@@ -142,6 +145,7 @@ aesthetics-ladder-roadmap.md  # V2.1 新增:审美阶梯执行路线图
 side-track-roadmap.md         # V2.1 新增:副业·从零创作执行路线图
 00-notes/
   reading-debt.md      # 下钻欠债本:撞到的缺口记这里
+  swipe-file.md         # V2.1 新增:对比留痕本(设置+前后图),roadmap 方法论里点名但此前没给路径
   mechanics.md         # 大白话原理笔记(下钻后回填)
   fragile-dependencies.md  # V2 新增:管线依赖的工具/节点/模型健康度追踪
   v2-changelog.md       # V2 变更说明(可选保留)
